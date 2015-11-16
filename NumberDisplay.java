@@ -13,17 +13,12 @@ public class NumberDisplay
     
     
     public NumberDisplay(int limite){
+       numero = 0;
+       max = limite;            
         
-        numero = limite;
-               
-        if(limite > 99){
-            numero = 0;
-        
-        }
        
-        
-           
-    }
+      
+     }
     
     
     public void setValue(int valor){
@@ -57,14 +52,14 @@ public class NumberDisplay
     
     public int getValue(){
     
-        int valorNumero = numero;
-        return valorNumero;
+        
+        return numero;
     }
     
     public void increment(){
         numero++;
     
-        if(numero > 99){
+        if(numero >= max){
             numero = 0;
     
         }
