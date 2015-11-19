@@ -57,7 +57,9 @@ public class ClockDisplay
             tiempo = (hora.getValue() - 12) + ""; 
         }
          mañana = "pm";
-         
+         if( hora.getValue() == 0){
+            tiempo = "12";
+            }
         
          if(hora.getValue() == 12 && minuto.getValue() ==0 ){
             mañana = "m";
