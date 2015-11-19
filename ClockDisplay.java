@@ -11,7 +11,7 @@ public class ClockDisplay
     private NumberDisplay hora;
     private NumberDisplay minuto;
     private String time;
-    
+   
     
     public ClockDisplay(){
     
@@ -33,16 +33,36 @@ public class ClockDisplay
     
     }
     
+    
+    
     public void setTime(int valorHora, int valorMinuto){
+       
         hora.setValue(valorHora);
         minuto.setValue(valorMinuto);
-        time = hora.getDisplayValue() + ":" + minuto.getDisplayValue();
         
+        time = hora.getDisplayValue() + ":" + minuto.getDisplayValue();  
     }
     
     
     public String getTime(){
-        time = hora.getDisplayValue() + ":" + minuto.getDisplayValue();
+        String tiempo = hora.getDisplayValue();
+        String mañana = " am";
+        
+        if(hora.getValue() > 12 && hora.getValue() <= 22){
+            tiempo = "0" + hora; 
+        
+        } 
+       
+        if(hora.getValue() > 12) {
+            tiempo = (hora.getValue() - 12) + ""; 
+        }
+         mañana = "pm";
+         
+        
+         if(hora.getValue() == 12 && minuto.getValue() ==0 ){
+            mañana = "m";
+            }
+        time = tiempo + ":" + minuto.getDisplayValue() + mañana;  
         return time;
     }
     
