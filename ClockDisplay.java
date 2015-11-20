@@ -59,8 +59,17 @@ public class ClockDisplay
     public void doceHoras(){
         String tiempo = hora.getDisplayValue();
         String mañana = " am";
+        if (franja == true){
+          if( hora.getValue() == 0){
+            tiempo = "12";
+          }
+        
+        if((hora.getValue() > 12) && (hora.getValue() < 22)){
+            tiempo = "0" + hora; 
 
-        if((hora.getValue() > 12) && (hora.getValue() <= 22)){
+        } 
+        
+        if((hora.getValue() > 0) && (hora.getValue() < 10)){
             tiempo = "0" + hora; 
 
         } 
@@ -72,15 +81,16 @@ public class ClockDisplay
             mañana = "pm";
         }
 
-        if( hora.getValue() == 0){
-            tiempo = "12";
-        }
+       
 
         if((hora.getValue() == 12) && (minuto.getValue() == 0) ){
             mañana = "m";
         }
         time = tiempo + ":" + minuto.getDisplayValue() + mañana;  
-
+    }
+    else{
+        time = hora.getDisplayValue() + " : " + minuto.getDisplayValue();
+    }
     } 
 
 }
