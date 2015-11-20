@@ -19,25 +19,24 @@ public class ClockDisplay
         doceHoras();
         franja = doceHoras;
 
-        time = hora.getDisplayValue() + ":" + minuto.getDisplayValue();
+        doceHoras();
     }
+
     public ClockDisplay(int horaDada, int minutoDado, boolean doceHoras){
         hora = new NumberDisplay(24);
         minuto = new NumberDisplay(60);
         franja = doceHoras;
         hora.setValue(horaDada);
         minuto.setValue(minutoDado);
-         doceHoras();
+        doceHoras();
 
     }
 
-    
     public void setTime(int valorHora, int valorMinuto){
-
         hora.setValue(valorHora);
         minuto.setValue(valorMinuto);
 
-          doceHoras();
+        doceHoras();
     }
 
     public String getTime(){
@@ -49,7 +48,7 @@ public class ClockDisplay
         if(minuto.getValue() == 0){
             hora.increment();
         }
-           doceHoras();
+        doceHoras();
     }
 
     /**
@@ -60,37 +59,47 @@ public class ClockDisplay
         String tiempo = hora.getDisplayValue();
         String mañana = " am";
         if (franja == true){
-          if( hora.getValue() == 0){
-            tiempo = "12";
-          }
-        
-        if((hora.getValue() > 12) && (hora.getValue() < 22)){
-            tiempo = "0" + hora; 
-
-        } 
-        
-        if((hora.getValue() > 0) && (hora.getValue() < 10)){
-            tiempo = "0" + hora; 
-
-        } 
-
-        if(hora.getValue() >= 12) {
-            if(hora.getValue() > 12) {
-                tiempo = (hora.getValue() - 12) + ""; 
+            if( hora.getValue() == 0){
+                tiempo = "12";
             }
-            mañana = "pm";
-        }
 
-       
+            if((hora.getValue() > 12) && (hora.getValue() < 22)){
+                tiempo = "0" + hora; 
 
-        if((hora.getValue() == 12) && (minuto.getValue() == 0) ){
-            mañana = "m";
+            } 
+
+            if((hora.getValue() > 0) && (hora.getValue() < 10)){
+                tiempo = "0" + hora; 
+
+            } 
+
+            if(hora.getValue() >= 12) {
+                if(hora.getValue() > 12) {
+                    tiempo = (hora.getValue() - 12) + ""; 
+                }
+                mañana = "pm";
+            }
+
+
+            if((hora.getValue() == 12) && (minuto.getValue() == 0) ){
+                mañana = "m";
+            }
+            time = tiempo + ":" + minuto.getDisplayValue() + mañana;  
         }
-        time = tiempo + ":" + minuto.getDisplayValue() + mañana;  
-    }
-    else{
-        time = hora.getDisplayValue() + " : " + minuto.getDisplayValue();
-    }
+        else{
+            time = hora.getDisplayValue() + " : " + minuto.getDisplayValue();
+        }
     } 
+
+    public void changeFormat(){
+        if(franja){
+
+            franja = false;
+        }
+        else{
+            franja = true;
+        }
+
+    }
 
 }
