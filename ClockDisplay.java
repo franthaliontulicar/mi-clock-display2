@@ -16,6 +16,7 @@ public class ClockDisplay
     public ClockDisplay(boolean doceHoras){
         hora = new NumberDisplay(24);
         minuto = new NumberDisplay(60);
+        doceHoras();
         franja = doceHoras;
 
         time = hora.getDisplayValue() + ":" + minuto.getDisplayValue();
@@ -26,7 +27,7 @@ public class ClockDisplay
         franja = doceHoras;
         hora.setValue(horaDada);
         minuto.setValue(minutoDado);
-        time = hora.getDisplayValue() + ":" + minuto.getDisplayValue();
+         doceHoras();
 
     }
 
@@ -36,7 +37,7 @@ public class ClockDisplay
         hora.setValue(valorHora);
         minuto.setValue(valorMinuto);
 
-        time = hora.getDisplayValue() + ":" + minuto.getDisplayValue();  
+          doceHoras();
     }
 
     public String getTime(){
@@ -48,7 +49,7 @@ public class ClockDisplay
         if(minuto.getValue() == 0){
             hora.increment();
         }
-        time = hora.getDisplayValue() + ":" + minuto.getDisplayValue();
+           doceHoras();
     }
 
     /**
