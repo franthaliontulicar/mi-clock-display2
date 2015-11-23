@@ -68,8 +68,10 @@ public class ClockDisplay
                 dia.increment();
                 if(dia.getValue() == 0){
                     mes.increment();
+                    dia.increment();
                     if( mes.getValue() == 0){
                         año.increment();
+                        mes.increment();
                     }
                 
                 }
