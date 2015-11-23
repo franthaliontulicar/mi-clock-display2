@@ -1,10 +1,10 @@
 #BlueJ class context
 comment0.params=doceHoras
 comment0.target=ClockDisplay(boolean)
-comment1.params=horaDada\ minutoDado\ doceHoras
-comment1.target=ClockDisplay(int,\ int,\ boolean)
-comment2.params=valorHora\ valorMinuto
-comment2.target=void\ setTime(int,\ int)
+comment1.params=horaDada\ minutoDado\ doceHoras\ diaDado\ mesDado\ a\u00F1oDado
+comment1.target=ClockDisplay(int,\ int,\ boolean,\ int,\ int,\ int)
+comment2.params=valorHora\ valorMinuto\ diaDado\ mesDado\ a\u00F1oDado
+comment2.target=void\ setTime(int,\ int,\ int,\ int,\ int)
 comment3.params=
 comment3.target=java.lang.String\ getTime()
 comment4.params=

@@ -12,44 +12,74 @@ public class ClockDisplay
     private NumberDisplay minuto;
     private String time;
     private boolean franja; 
+    private NumberDisplay dia;
+    private NumberDisplay mes;
+    private NumberDisplay año;
 
     public ClockDisplay(boolean doceHoras){
         hora = new NumberDisplay(24);
         minuto = new NumberDisplay(60);
+        dia  = new NumberDisplay(31);
+        dia.setValue(22);
+        mes  = new NumberDisplay(13);
+        mes.setValue(11);
+        año  = new NumberDisplay(100);
+        año.setValue(15);
         doceHoras();
         franja = doceHoras;
 
-        doceHoras();
     }
 
-    public ClockDisplay(int horaDada, int minutoDado, boolean doceHoras){
+    public ClockDisplay(int horaDada, int minutoDado, boolean doceHoras, int diaDado, int mesDado, int añoDado){
         hora = new NumberDisplay(24);
-        minuto = new NumberDisplay(60);
-        franja = doceHoras;
         hora.setValue(horaDada);
+        minuto = new NumberDisplay(60);
         minuto.setValue(minutoDado);
+        franja = doceHoras;
+
+        dia  = new NumberDisplay(31);
+        dia.setValue(diaDado);
+        mes  = new NumberDisplay(13);
+        mes.setValue(mesDado);
+        año  = new NumberDisplay(100);
+        año.setValue(añoDado);
+
         doceHoras();
-
     }
-
-    public void setTime(int valorHora, int valorMinuto){
+    public void setTime(int valorHora, int valorMinuto, int diaDado, int mesDado, int añoDado){
         hora.setValue(valorHora);
         minuto.setValue(valorMinuto);
-
+        dia.setValue(diaDado);
+        mes.setValue(mesDado);
+        año.setValue(añoDado);
         doceHoras();
-    }
 
+    }
     public String getTime(){
         return time;
     }
 
     public void timeTick(){
+
         minuto.increment();          
         if(minuto.getValue() == 0){
             hora.increment();
+            if(hora.getValue() == 0){
+                dia.increment();
+                if(dia.getValue() == 0){
+                    mes.increment();
+                    if( mes.getValue() == 0){
+                        año.increment();
+                    }
+                
+                }
+            }   
         }
+
         doceHoras();
     }
+
+   
 
     /**
      * actualiza el reloj a modo de 12 horas
@@ -59,7 +89,7 @@ public class ClockDisplay
         String tiempo = hora.getDisplayValue();
         String mañana = " am";
         if (franja == true){
-            if( hora.getValue() == 0){
+            if(hora.getValue() == 0) {
                 tiempo = "12";
             }
 
@@ -80,14 +110,17 @@ public class ClockDisplay
                 mañana = "pm";
             }
 
-
             if((hora.getValue() == 12) && (minuto.getValue() == 0) ){
                 mañana = "m";
             }
-            time = tiempo + ":" + minuto.getDisplayValue() + mañana;  
+            
+            
+            time = tiempo + ":" + minuto.getDisplayValue() + mañana + "//"+  dia.getValue() + 
+            " / "+ (mes.getValue()) + " / "+ año.getDisplayValue();  
         }
         else{
-            time = hora.getDisplayValue() + " : " + minuto.getDisplayValue();
+            time = hora.getDisplayValue() + " : " + minuto.getDisplayValue()+  " // " + (dia.getValue() ) + 
+            " / "+ (mes.getValue()) + " / "+ año.getDisplayValue();
         }
     } 
 
